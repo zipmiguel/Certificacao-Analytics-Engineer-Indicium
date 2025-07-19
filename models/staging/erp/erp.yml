@@ -1,0 +1,16 @@
+sources:
+  - name: erp
+    schema: raw_adventure_works
+    tables:
+      - name: product
+        identifier: production_product # nome original no banco
+        description: "Tabela de produtos"
+      - name: productproductphoto
+        identifier: production_productproductphoto # nome original no banco
+        description: "Tabela com dados de produtos"
+      - name: productcategory
+        identifier: production_productcategory # nome original no banco
+        description: "Tabela de categorias de produtos"
+      - name: productsubcategory
+        identifier: production_productsubcategory # nome original no banco
+        description: "Tabela de subcategorias de produtos"
