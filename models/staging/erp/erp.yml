@@ -4,13 +4,52 @@ sources:
     tables:
       - name: product
         identifier: production_product # nome original no banco
-        description: "Tabela de produtos"
-      - name: productproductphoto
-        identifier: production_productproductphoto # nome original no banco
-        description: "Tabela com dados de produtos"
+        description: "Dados da tabela produtos"
       - name: productcategory
         identifier: production_productcategory # nome original no banco
-        description: "Tabela de categorias de produtos"
+        description: "Dados da tabela categorias de produtos"         
       - name: productsubcategory
         identifier: production_productsubcategory # nome original no banco
-        description: "Tabela de subcategorias de produtos"
+        description: "Dados da tabela subcategorias de produtos"
+      - name: salesorderdetail
+        identifier: sales_salesorderdetail # nome original no banco
+        description: "Dados da tabela detalhes de vendas"
+      - name: salesorderheader
+        identifier: sales_salesorderheader # nome original no banco
+        description: "Dados da tabela cabecalho dos pedidos de vendas"
+      - name: creditcard
+        identifier: sales_creditcard # nome original no banco
+        description: "Dados da tabela cartoes de credito"
+      - name: salesorderheadersalesreason
+        identifier: sales_salesorderheadersalesreason # nome original no banco
+        description: "Dados da tabela cabecalho dos pedidos de vendas e motivo vendas"
+      - name: salesreason
+        identifier: sales_salesreason # nome original no banco
+        description: "Dados da tabela motivo vendas"
+      - name: person
+        identifier: person_person # nome original no banco
+        description: "Dados da tabela pessoas"
+      - name: customer
+        identifier: sales_customer # nome original no banco
+        description: "Dados da tabela clientes"
+      - name: store
+        identifier: sales_store # nome original no banco
+        description: "Dados da tabela lojas"
+      - name: countryregion
+        identifier: person_countryregion # nome original no banco
+        description: "Dados da tabela paises"
+      - name: stateprovince
+        identifier: person_stateprovince # nome original no banco
+        description: "Dados da tabela estados"
+      - name: address
+        identifier: person_address # nome original no banco
+        description: "Dados da tabela endereços"
+      - name: employee
+        identifier: human_resources_employee # nome original no banco
+        description: "Dados da tabela funcionarios" 
+      - name: salesperson
+        identifier: sales_salesperson # nome original no banco
+        description: "Dados da tabela vededores"
+      - name: salesterritory
+        identifier: sales_salesterritory # nome original no banco
+        description: "Dados da tabela vendas por territorio"
