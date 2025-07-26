@@ -1,7 +1,7 @@
 with 
     source as (
         select * 
-        from {{ source('erp', 'salesorderheader') }}
+        from {{ source('erp', 'sales_salesorderheader') }}
     )
     , renamed as (
         select
@@ -15,6 +15,15 @@ with
             , orderdate::date as data_pedido --Converte orderdate de timestamp (data e hora) para date (apenas data)
             , shipdate::date as data_envio --Converte sellstartdate de timestamp (data e hora) para date (apenas data)
             , cast(status as int) as status_pedido
+            , case 
+                 when cast(status as int) = 1 then 'Em processamento'
+                 when cast(status as int) = 2 then 'Aprovado'
+                 when cast(status as int) = 3 then 'Em espera'
+                 when cast(status as int) = 4 then 'Rejeitado'
+                 when cast(status as int) = 5 then 'Enviado'
+                 when cast(status as int) = 6 then 'Cancelado'
+                 else 'sem_status'
+              end as nome_status_pedido --mostra o que cada número do status_pedido significa
             , cast(onlineorderflag as boolean) as sinalizador_pedido_online --Se for TRUE o pedido foi no site, se for FALSE foi em uma loja (store)
             , cast(purchaseordernumber as varchar) as codigo_pedido
             , cast(subtotal as numeric(18,2)) as subtotal_devido

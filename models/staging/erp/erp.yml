@@ -2,54 +2,216 @@ sources:
   - name: erp
     schema: raw_adventure_works
     tables:
-      - name: product
-        identifier: production_product # nome original no banco
-        description: "Dados da tabela produtos"
-      - name: productcategory
-        identifier: production_productcategory # nome original no banco
-        description: "Dados da tabela categorias de produtos"         
-      - name: productsubcategory
-        identifier: production_productsubcategory # nome original no banco
-        description: "Dados da tabela subcategorias de produtos"
-      - name: salesorderdetail
-        identifier: sales_salesorderdetail # nome original no banco
-        description: "Dados da tabela detalhes de vendas"
-      - name: salesorderheader
-        identifier: sales_salesorderheader # nome original no banco
-        description: "Dados da tabela cabecalho dos pedidos de vendas"
-      - name: creditcard
-        identifier: sales_creditcard # nome original no banco
-        description: "Dados da tabela cartoes de credito"
-      - name: salesorderheadersalesreason
-        identifier: sales_salesorderheadersalesreason # nome original no banco
-        description: "Dados da tabela cabecalho dos pedidos de vendas e motivo vendas"
-      - name: salesreason
-        identifier: sales_salesreason # nome original no banco
-        description: "Dados da tabela motivo vendas"
-      - name: person
+      - name: person_address #enderecos
+        description: "Dados tabela person_address" 
+        columns:
+          - name: addressid
+            description: 'chave primaria tabela person_address'
+            tests:
+              - unique
+              - not_null
+          - name: stateprovinceid
+            description: 'chave estrangeira tabela person_address'
+            tests:
+              - not_null
+      - name: person_countryregion #paises
+        description: "Dados tabela person_countryregion" 
+        columns:
+          - name: countryregioncode
+            description: 'chave primaria tabela person_countryregion'
+            tests:
+              - unique
+              - not_null
+      - name: sales_creditcard #cartoes de credito
+        description: "Dados tabela sales_creditcard"
+        columns:
+          - name: creditcardid
+            description: 'chave primaria tabela sales_creditcard'
+            tests:
+              - unique
+              - not_null
+      - name: sales_customer #clientes
+        description: "Dados tabela sales_customer"
+        columns:
+          - name: customerid
+            description: 'chave primaria tabela sales_customer'
+            tests:
+              - unique
+              - not_null
+          - name: personid
+            description: 'chave estrangeira tabela sales_customer'
+            #nenhum teste aqui pois nem todos os customerid precisam estar ligados a uma pessoa, existem linhas NULL quando um customerid é ligado a um storeid (loja)
+          - name: storeid
+            description: 'chave estrangeira tabela sales_customer'
+            #nenhum teste aqui pois nem todos os customerid precisam estar ligados a uma loja, existem linhas NULL quando um customerid é ligado a um personid (cliente)
+          - name: territoryid
+            description: 'chave estrangeira tabela sales_customer'
+            tests:
+              - not_null
+      - name: human_resources_employee #funcionarios
+        description: "Dados tabela human_resources_employee" 
+        columns:
+          - name: businessentityid
+            description: 'chave primaria tabela human_resources_employee'
+            tests:
+              - unique
+              - not_null
+      - name: person_person #pessoas
         identifier: person_person # nome original no banco
-        description: "Dados da tabela pessoas"
-      - name: customer
-        identifier: sales_customer # nome original no banco
-        description: "Dados da tabela clientes"
-      - name: store
-        identifier: sales_store # nome original no banco
-        description: "Dados da tabela lojas"
-      - name: countryregion
-        identifier: person_countryregion # nome original no banco
-        description: "Dados da tabela paises"
-      - name: stateprovince
-        identifier: person_stateprovince # nome original no banco
-        description: "Dados da tabela estados"
-      - name: address
-        identifier: person_address # nome original no banco
-        description: "Dados da tabela endereços"
-      - name: employee
-        identifier: human_resources_employee # nome original no banco
-        description: "Dados da tabela funcionarios" 
-      - name: salesperson
+        description: "Dados tabela person_person"
+        columns:
+          - name: businessentityid
+            description: 'chave primaria tabela person_person'
+            tests:
+              - unique
+              - not_null
+      - name: production_product #produtos
+        description: "Dados tabela production_product"
+        columns:
+          - name: productid
+            description: 'chave primaria tabela production_product'
+            tests:
+              - unique
+              - not_null
+          - name: productsubcategoryid
+            description: 'chave estrangeira tabela production_product'
+            # Nenhum teste aqui, pois nem todos os produtos precisam estar ligados a uma subcategoria, existem linhas NULL
+      - name: production_productcategory #categorias de produtos
+        description: "Dados tabela production_productcategory"   
+        columns:
+          - name: productcategoryid
+            description: 'chave primaria tabela production_productcategory'
+            tests:
+              - unique
+              - not_null
+      - name: production_productsubcategory #subcategorias de produtos
+        description: "Dados tabela production_productsubcategory"
+        columns:
+          - name: productsubcategoryid
+            description: 'chave primaria tabela production_productsubcategory'
+            tests:
+              - unique
+              - not_null
+          - name: productcategoryid
+            description: 'chave estrangeira tabela production_productsubcategory'
+            tests:
+              - not_null
+      - name: sales_salesorderdetail #detalhes de vendas
+        description: "Dados tabela sales_salesorderdetail"
+        columns:
+          - name: salesorderdetailid
+            description: 'chave primaria tabela sales_salesorderdetail'
+            tests:
+              - unique
+              - not_null
+          - name: salesorderid
+            description: 'chave estrangeira tabela sales_salesorderdetail'
+            tests:
+              - not_null
+          - name: productid
+            description: 'chave estrangeira tabela sales_salesorderdetail'
+            tests:
+              - not_null
+      - name: sales_salesorderheader #cabecalho dos pedidos
+        description: "Dados tabela sales_salesorderheader"
+        columns:
+          - name: salesorderid
+            description: 'chave primaria tabela sales_salesorderheader'
+            tests:
+              - unique
+              - not_null
+          - name: customerid
+            description: 'chave estrangeira tabela sales_salesorderheader'
+            tests:
+              - not_null
+          - name: salespersonid
+            description: 'chave estrangeira tabela sales_salesorderheader'
+            #Nenhum teste aqui pois salespersonid pode ser NULL na tabela sales_salesorderheader, pois toda compra que salespersonid (vendedor) é NULL foi feita online, o onlineorderflag em todas elas é TRUE
+          - name: territoryid
+            description: 'chave estrangeira tabela sales_salesorderheader'
+            tests:
+              - not_null
+          - name: shiptoaddressid
+            description: 'chave estrangeira tabela sales_salesorderheader'
+            tests:
+              - not_null
+          - name: shipmethodid
+            description: 'chave estrangeira tabela sales_salesorderheader'
+            tests:
+              - not_null
+          - name: creditcardid
+            description: 'chave estrangeira tabela sales_salesorderheader'
+            # Nenhum teste aqui, creditcardid por ser NULL na tabela sales_salesorderheader. Todas as linhas com creditcardid NULL possuem status = 5 (enviado), o que indica que a compra foi efetivada por outro método de pagamento não especificado pelo banco de dados.
+      - name: sales_salesorderheadersalesreason #cabecalho dos pedidos e motivos das vendas
+        description: "Dados tabela sales_salesorderheadersalesreason"
+        columns:
+          - name: salesorderid
+            description: 'chave estrangeira tabela sales_salesorderheadersalesreason'
+            tests:
+              - not_null
+          - name: salesreasonid
+            description: 'chave estrangeira tabela sales_salesorderheadersalesreason'
+            tests:
+              - not_null
+      - name: sales_salesperson #vededores
         identifier: sales_salesperson # nome original no banco
-        description: "Dados da tabela vededores"
-      - name: salesterritory
-        identifier: sales_salesterritory # nome original no banco
-        description: "Dados da tabela vendas por territorio"
+        description: "Dados tabela sales_salesperson"
+        columns:
+          - name: businessentityid
+            description: 'chave primaria tabela sales_salesperson'
+            tests:
+              - unique
+              - not_null
+          - name: territoryid 
+            description: 'chave estrangeira tabela sales_salesperson' 
+            tests:
+              - not_null:
+                  severity: warn #Pode ser NULL para vendedores sem território atribuído (businessentityid com territoryid NULL: 274, 285, 287)
+      - name: sales_salesreason #motivo das vendas
+        description: "Dados tabela sales_salesreason"
+        columns:
+          - name: salesreasonid
+            description: 'chave primaria tabela sales_salesreason'
+            tests:
+              - unique
+              - not_null
+      - name: sales_salesterritory #vendas por territorio
+        description: "Dados tabela sales_salesterritory"
+        columns:
+          - name: territoryid
+            description: 'chave primaria tabela sales_salesterritory'
+            tests:
+              - unique
+              - not_null
+          - name: countryregioncode
+            description: 'chave estrangeira tabela sales_salesterritory'
+            tests:
+              - not_null
+      - name: person_stateprovince #estados
+        description: "Dados tabela person_stateprovince"
+        columns:
+          - name: stateprovinceid
+            description: 'chave primaria tabela person_stateprovince'
+            tests:
+              - unique
+              - not_null
+          - name: countryregioncode
+            description: 'chave estrangeira tabela person_stateprovince'
+            tests:
+              - not_null
+          - name: territoryid
+            description: 'chave estrangeira tabela person_stateprovince'
+            tests:
+              - not_null
+      - name: sales_store #lojas
+        description: "Dados tabela sales_store"
+        columns:
+          - name: businessentityid
+            description: 'chave primaria tabela sales_store'
+            tests:
+              - unique
+              - not_null
+          - name: salespersonid
+            description: 'chave estrangeira tabela sales_store'
+            tests:
+              - not_null

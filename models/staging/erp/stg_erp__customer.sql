@@ -1,7 +1,7 @@
 with 
     source as (
         select * 
-        from {{ source('erp', 'customer') }}
+        from {{ source('erp', 'sales_customer') }}
     )
     , renamed as (
         select

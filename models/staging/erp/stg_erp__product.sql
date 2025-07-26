@@ -1,13 +1,13 @@
 with 
     source as (
         select *
-        from {{ source('erp', 'product') }}
+        from {{ source('erp', 'production_product') }}
     )
     , renamed as (
         select
             cast(productid as int) as pk_produto
-            , cast(name as varchar) as nome_produto
             , cast(productsubcategoryid as int) as fk_subcategoria_produto
+            , cast(name as varchar) as nome_produto            
             , cast(productnumber as varchar) as numero_produto
             , cast(safetystocklevel as int) as nivel_de_estoque_de_seguranca
             , cast(reorderpoint as int) as ponto_de_reabastecimento
