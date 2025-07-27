@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: dim_cartao_credito
+    description: "Dimensão com os cartões de crédito utilizados nos pedidos"
+
+    columns:
+      - name: sk_cartao_credito
+        description: "Chave surrogate da tabela dim_cartao_credito"
+        tests:
+          - not_null
+          - unique
+
+      - name: id_cartao_credito
+        description: "ID do cartão de crédito"
+
+      - name: tipo_cartao
+        description: "Tipo do cartão de crédito"

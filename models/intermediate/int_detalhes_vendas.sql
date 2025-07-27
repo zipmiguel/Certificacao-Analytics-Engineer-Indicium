@@ -57,7 +57,7 @@ with
 
     , chave_surrogate as (
         select 
-            fk_pedido::varchar || '-' || fk_produto::varchar as sk_detalhes_vendas
+            {{ dbt_utils.generate_surrogate_key(['fk_pedido', 'fk_produto']) }} as sk_detalhes_vendas
             , *
         from calculado
     )
