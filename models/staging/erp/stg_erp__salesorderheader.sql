@@ -26,10 +26,10 @@ with
               end as nome_status_pedido --mostra o que cada número do status_pedido significa
             , cast(onlineorderflag as boolean) as sinalizador_pedido_online --Se for TRUE o pedido foi no site, se for FALSE foi em uma loja (store)
             , cast(purchaseordernumber as varchar) as codigo_pedido
-            , cast(subtotal as numeric(18,2)) as subtotal_devido
+            , cast(subtotal as numeric(18,2)) as subtotal_devido_por_pedido --subtotal_devido_por_pedido = quantidade_produto * preco_unitario_produto [TOTAL DO PEDIDO] 
             , cast(taxamt as numeric(18,2)) as imposto
             , cast(freight as numeric(18,2)) as frete
-            , cast(totaldue as numeric(18,2)) as total_devido
+            , cast(totaldue as numeric(18,2)) as total_devido_por_pedido    --total_devido_por_pedido = subtotal_devido + imposto + frete [TOTAL DO PEDIDO]
             --revisionnumber,
             --duedate,
             --accountnumber,

@@ -1,0 +1,77 @@
+version: 2
+
+models:
+  - name: int_detalhes_vendas
+    description: "Modelo da camada intermediate que combina `stg_erp__salesorderdetail` com `stg_erp__salesorderheader` para enriquecer os detalhes de vendas com dados de pedido e realizar cálculos de valor por item do pedido."
+    columns:
+      - name: sk_detalhes_vendas
+        description: "Chave surrogate da tabela int_detalhes_vendas construída concatenando `fk_pedido` e `fk_produto`."
+        tests:
+          - unique
+          - not_null
+
+      - name: pk_detalhes_pedido
+        description: "Chave estrangeira que referencia os detalhes do pedido"
+        tests:
+          - unique
+          - not_null          
+
+      - name: fk_pedido
+        description: "Chave estrangeira que referencia o pedido"
+
+      - name: fk_produto
+        description: "Chave estrangeira que referencia o produto"
+
+      - name: fk_cliente
+        description: "Chave estrangeira que referencia o cliente"
+
+      - name: fk_vendedor
+        description: "Chave estrangeira que referencia o vendedor responsável pelo pedido"
+
+      - name: fk_territorio
+        description: "Chave estrangeira que referencia o território de vendas"
+
+      - name: fk_endereco_entrega
+        description: "Chave estrangeira que referencia o endereço de entrega do pedido"
+
+      - name: fk_cartao_credito
+        description: "Chave estrangeira que referencia o cartão de crédito utilizado no pedido"
+
+      - name: data_pedido
+        description: "Data em que o pedido foi realizado"
+
+      - name: data_envio
+        description: "Data em que o pedido foi enviado ao cliente"
+
+      - name: status_pedido
+        description: "Código que representa o status do pedido"
+
+      - name: nome_status_pedido
+        description: "Descrição do status do pedido"
+
+      - name: sinalizador_pedido_online
+        description: "Indica se o pedido foi feito online (TRUE) ou não (FALSE)."
+
+      - name: codigo_pedido
+        description: "Número do pedido utilizado para rastreio e controle do cliente."
+
+      - name: quantidade_produto
+        description: "Quantidade do produto vendida neste item do pedido."
+
+      - name: preco_unitario_produto
+        description: "Preço unitário do produto"
+
+      - name: desconto_preco_unitario
+        description: "Desconto aplicado sobre o preço unitário do produto."
+
+      - name: imposto_por_produto
+        description: "Imposto do pedido distribuído igualmente entre os itens distintos do pedido"
+
+      - name: frete_por_produto
+        description: "Frete do pedido distribuído igualmente entre os itens distintos do pedido"
+
+      - name: valor_total_bruto
+        description: "Valor bruto do item do pedido, calculado como `preco_unitario_produto * quantidade_produto`"
+
+      - name: valor_total_liquido
+        description: "Valor líquido do item do pedido após desconto, calculado como `valor_total_bruto * (1 - desconto_preco_unitario)`"
