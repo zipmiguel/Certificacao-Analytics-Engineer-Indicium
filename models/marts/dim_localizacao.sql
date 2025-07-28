@@ -29,7 +29,7 @@ with
         , stg_erp__countryregion.nome_pais as pais
     from stg_erp__salesorderheader
     left join stg_erp__address on stg_erp__salesorderheader.fk_endereco_entrega = stg_erp__address.pk_endereco
-    left join 	stg_erp__stateprovince on stg_erp__address.fk_estado = stg_erp__stateprovince.pk_estado
+    left join stg_erp__stateprovince on stg_erp__address.fk_estado = stg_erp__stateprovince.pk_estado
     left join stg_erp__countryregion on stg_erp__stateprovince.fk_pais = stg_erp__countryregion.pk_pais 
     )
 select *
