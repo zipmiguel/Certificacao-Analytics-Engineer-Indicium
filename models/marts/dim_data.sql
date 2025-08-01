@@ -15,7 +15,7 @@ with
             , extract(month from date_day) as mes
             , extract(day from date_day) as dia
             , extract(quarter from date_day) as trimestre
-            , trim(to_char(date_day, 'Day')) as dia_semana
+            , dayname(TO_DATE(date_day)) AS dia_semana
             , to_char(date_day, 'YYYY-MM') as ano_mes
         from date_spine
     )

@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: dim_motivo_venda
+    description: >
+      Dimensão que consolida os motivos de venda associados a cada pedido.
+      Permite análises sobre os principais motivos que influenciaram a conclusão de pedidos no histórico de vendas.
+
+    columns:
+      - name: sk_pedido_venda
+        description: "Chave surrogate gerada a partir de fk_pedido"
+        tests:
+          - unique
+          - not_null
+
+      - name: fk_pedido
+        description: "Chave estrangeira referenciando pedido venda"
+        tests:
+          - not_null
+
+      - name: motivos_venda_concatenados
+        description: >
+          Lista de motivos de venda associados ao pedido, concatenados em uma única string separada por vírgulas como: 'Price, On Promotion, Magazine Advertisement, Television Advertisement, Manufacturer, Review, Demo Event, Sponsorship, Quality, Other'

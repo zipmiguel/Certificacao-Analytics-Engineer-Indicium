@@ -1,0 +1,32 @@
+version: 2
+
+models:
+  - name: dim_cliente
+    description: >
+      Dimensão de clientes que centraliza informações de identificação,
+      tipo de pessoa, loja associada (quando aplicável; pode ter sido feita compra online) e data do primeiro pedido.
+    columns:
+      - name: sk_cliente
+        description: Chave surrogate da tabela dim_cliente, gerada a partir de pk_cliente
+        tests:
+          - not_null
+          - unique
+
+      - name: pk_cliente
+        description: Chave primária original da tabela de clientes
+        tests:
+          - not_null
+          - unique
+
+      - name: nome_completo
+        description: Nome completo cliente
+
+      - name: nome_loja
+        description: Nome da loja associada ao cliente (quando aplicável)
+
+      - name: data_primeiro_pedido
+        description: Data do primeiro pedido realizado pelo cliente
+
+      - name: tipo_pessoa
+        description: >
+          Classificação do cliente, como 'Cliente Individual', 'Contato Loja', 'Loja'
