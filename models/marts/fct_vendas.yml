@@ -67,16 +67,16 @@ models:
         description: Valor de desconto aplicado no item
 
       - name: imposto_por_produto
-        description: Valor de imposto pago por produto (item do pedido)
+        description: Valor de imposto pago por produto
 
       - name: frete_por_produto
-        description: Valor de frete alocado por produto (item do pedido)
+        description: Valor de frete alocado por produto
 
       - name: valor_total_bruto
         description: Valor bruto da venda ('quantidade_produto' x 'preco_unitario_produto')
 
       - name: valor_total_liquido
-        description: Valor líquido da venda ('valor_total_bruto' - 'desconto_preco_unitario' [por produto ou por linha do pedido])
+        description: Valor líquido da venda ('valor_total_bruto' - 'desconto_preco_unitario')
 
       - name: nome_completo
         description: Nome completo do cliente
