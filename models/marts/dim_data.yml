@@ -1,0 +1,39 @@
+version: 2
+
+models:
+  - name: dim_data
+    description: "Dimensão de datas gerada com intervalo entre 2010-01-01 e 2015-12-31"
+    columns:
+      - name: sk_data
+        description: "Chave surrogate gerada a partir da coluna `data` para garantir unicidade e facilitar o relacionamento com outras tabelas"
+        tests:
+          - unique
+          - not_null
+      - name: data
+        description: "Data do dia no formato DATE"
+        tests:
+          - not_null
+      - name: ano
+        description: "Ano da data (ex: 2011)"
+        tests:
+          - not_null
+      - name: mes
+        description: "Número do mês (1 a 12)"
+        tests:
+          - not_null
+      - name: dia
+        description: "Dia do mês (1 a 31)"
+        tests:
+          - not_null
+      - name: trimestre
+        description: "Número do trimestre (1 a 4)"
+        tests:
+          - not_null
+      - name: dia_semana
+        description: "Nome do dia da semana formatado e sem espaços extras (ex: 'Monday')"
+        tests:
+          - not_null
+      - name: ano_mes
+        description: "Ano e mês no formato string 'YYYY-MM' (ex: '2011-07')"
+        tests:
+          - not_null

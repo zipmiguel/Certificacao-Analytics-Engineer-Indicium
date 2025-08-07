@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: dim_localizacao
+    description: >
+      Dimensão de localização contendo informações de cidade, estado e país referentes ao endereço de entrega dos pedidos.
+      Essa dimensão permite análises geográficas, como distribuição de vendas por região, cidade ou país.
+    columns:
+      - name: sk_endereco_entrega
+        description: "Chave surrogate gerada a partir do identificador do endereço de entrega"
+        tests:
+          - unique
+          - not_null
+
+      - name: fk_endereco_entrega
+        description: "Chave estrangeira tabela localização"
+        tests:          
+          - not_null
+          
+      - name: cidade
+        description: "Nome da cidade associada ao endereço de entrega"
+
+      - name: estado
+        description: "Nome do estado associado ao endereço de entrega"
+
+      - name: pais
+        description: "Nome do país associado ao endereço de entrega"

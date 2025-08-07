@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: dim_produto
+    description: >
+      Dimensão de produto contendo informações hierárquicas sobre os produtos vendidos, suas subcategorias e categorias.
+      Essa dimensão permite análises por tipo de produto, segmentação de vendas e comparação por categorias.
+    columns:
+      - name: sk_produto
+        description: "Chave surrogate gerada a partir do pk_produto"
+        tests:
+          - unique
+          - not_null
+
+      - name: pk_produto
+        description: "Chave primária do produto"
+        tests:
+          - unique
+          - not_null
+
+      - name: nome_produto
+        description: "Nome do produto"
+
+      - name: nome_categoria_produto
+        description: "Nome da categoria do produto"
+
+      - name: nome_subcategoria_produto
+        description: "Nome da subcategoria do produto"

@@ -1,0 +1,92 @@
+version: 2
+
+models:
+  - name: fct_venda
+    description: >
+      Fato de vendas contendo detalhes de cada item vendido, com atributos do cliente,
+      produto, pedido, cartão de crédito e motivos da venda
+    columns:
+      - name: sk_fato_vendas
+        description: Chave surrogate única da tabela fato vendas
+        tests:
+          - not_null
+          - unique
+
+      - name: fk_detalhes_vendas
+        description: Chave estrangeira da tabela intermediária de detalhes de vendas
+
+      - name: fk_detalhes_pedido
+        description: Chave estrangeira dos detalhes do pedido
+
+      - name: fk_pedido
+        description: Chave estrangeira do pedido
+
+      - name: fk_produto
+        description: Chave estrangeira do produto vendido
+
+      - name: fk_cliente
+        description: Chave estrangeira do cliente comprador
+
+      - name: fk_vendedor
+        description: Chave estrangeira do vendedor responsável
+
+      - name: fk_territorio
+        description: Chave estrangeira do território de vendas
+
+      - name: fk_endereco_entrega
+        description: Chave estrangeira do endereço de entrega
+
+      - name: fk_cartao_credito
+        description: Chave estrangeira do cartão de crédito usado na compra
+
+      - name: motivos_venda_concatenados
+        description: Lista dos motivos da venda concatenados e separados por vírgula
+
+      - name: data_pedido
+        description: Data em que o pedido foi realizado
+
+      - name: data_envio
+        description: Data em que o pedido foi enviado ao cliente
+
+      - name: nome_status_pedido
+        description: "Status do pedido (Ex: Aguardando, Enviado, Cancelado)"
+
+      - name: codigo_pedido 
+        description: Código único do pedido  
+
+      - name: sinalizador_pedido_online
+        description: Indica se o pedido foi feito online (TRUE) ou offline (FALSE)
+
+      - name: quantidade_produto
+        description: Quantidade do produto vendida
+
+      - name: preco_unitario_produto
+        description: Preço de tabela do produto vendido
+
+      - name: desconto_preco_unitario
+        description: Valor de desconto aplicado no item
+
+      - name: imposto_por_produto
+        description: Valor de imposto pago por produto
+
+      - name: frete_por_produto
+        description: Valor de frete alocado por produto
+
+      - name: valor_total_bruto
+        description: Valor bruto da venda ('quantidade_produto' x 'preco_unitario_produto')
+
+      - name: valor_total_liquido
+        description: Valor líquido da venda ('valor_total_bruto' - 'desconto_preco_unitario')
+
+      - name: nome_completo
+        description: Nome completo do cliente
+
+      - name: nome_loja
+        description: Nome da loja associada ao cliente (se houver)  #se a compra tiver sido feita online, ou seja, se sinalizador_pedido_online for TRUE, não haverá nome loja, pois a compra foi feita no site
+
+      - name: tipo_pessoa
+        description: >
+          Tipo de pessoa do cliente. Exemplos:
+          - Cliente Individual (IN)
+          - Contato Loja (SC)
+          - Contato Geral (GC)

@@ -1,0 +1,212 @@
+models:
+      - name: stg_erp__address #tabela enderecos   # nome original da tabela no banco: person_address
+        description: "Dados tabela address" 
+        columns:
+          - name: pk_endereco
+            description: 'chave primaria tabela address'
+            tests:
+              - unique
+              - not_null
+          - name: fk_estado
+            description: 'chave estrangeira tabela address'
+            tests:
+              - not_null
+      - name: stg_erp__countryregion #tabela paises   # nome original da tabela no banco: person_countryregion
+        description: "Dados tabela countryregion" 
+        columns:
+          - name: pk_pais
+            description: 'chave primaria tabela countryregion'
+            tests:
+              - unique
+              - not_null
+      - name: stg_erp__creditcard #tabela cartoes de credito   # nome original da tabela no banco: sales_creditcard
+        description: "Dados tabela creditcard"
+        columns:
+          - name: pk_cartao_credito
+            description: 'chave primaria tabela creditcard'
+            tests:
+              - unique
+              - not_null
+      - name: stg_erp__customer #tabela clientes   # nome original da tabela no banco: sales_customer
+        description: "Dados tabela customer"
+        columns:
+          - name: pk_cliente
+            description: 'chave primaria tabela customer'
+            tests:
+              - unique
+              - not_null
+          - name: fk_pessoa
+            description: 'chave estrangeira tabela customer'
+            #nenhum teste aqui pois nem todos os customerid (pk_cliente) precisam estar ligados a uma pessoa, existem linhas NULL quando um customerid (pk_cliente) é ligado a um storeid (fk_loja)
+          - name: fk_loja
+            description: 'chave estrangeira tabela customer'
+            #nenhum teste aqui pois nem todos os customerid (pk_cliente) precisam estar ligados a uma loja, existem linhas NULL quando um customerid (pk_cliente) é ligado a um personid (fk_pessoa, cliente)
+          - name: fk_territorio
+            description: 'chave estrangeira tabela customer'
+            tests:
+              - not_null
+      - name: stg_erp__employee #tabela funcionarios   # nome original da tabela no banco: human_resources_employee
+        description: "Dados tabela employee" 
+        columns:
+          - name: pk_funcionario
+            description: 'chave primaria tabela employee'
+            tests:
+              - unique
+              - not_null
+      - name: stg_erp__person #tabela pessoas   # nome original da tabela no banco: person_person
+        description: "Dados tabela person"
+        columns:
+          - name: pk_pessoa
+            description: 'chave primaria tabela person'
+            tests:
+              - unique
+              - not_null
+      - name: stg_erp__product #tabela produtos   # nome original da tabela no banco: production_product
+        description: "Dados tabela product"
+        columns:
+          - name: pk_produto
+            description: 'chave primaria tabela product'
+            tests:
+              - unique
+              - not_null
+          - name: fk_subcategoria_produto
+            description: 'chave estrangeira tabela product'
+            # Nenhum teste aqui, pois nem todos os produtos precisam estar ligados a uma subcategoria, existem linhas NULL
+      - name: stg_erp__productcategory #tabela categorias de produtos   # nome original da tabela no banco: production_productcategory
+        description: "Dados tabela productcategory"   
+        columns:
+          - name: pk_categoria_produto
+            description: 'chave primaria tabela productcategory'
+            tests:
+              - unique
+              - not_null
+      - name: stg_erp__productsubcategory #tabela subcategorias de produtos   # nome original da tabela no banco: production_productsubcategory
+        description: "Dados tabela productsubcategory"
+        columns:
+          - name: pk_subcategoria_produto
+            description: 'chave primaria tabela productsubcategory'
+            tests:
+              - unique
+              - not_null
+          - name: fk_categoria_produto
+            description: 'chave estrangeira tabela productsubcategory'
+            tests:
+              - not_null
+      - name: stg_erp__salesorderdetail #tabela detalhes de vendas   # nome original da tabela no banco: sales_salesorderdetail
+        description: "Dados tabela salesorderdetail"
+        columns:
+          - name: pk_detalhes_pedido
+            description: 'chave primaria tabela salesorderdetail'
+            tests:
+              - unique
+              - not_null
+          - name: fk_pedido
+            description: 'chave estrangeira tabela salesorderdetail'
+            tests:
+              - not_null
+          - name: fk_produto
+            description: 'chave estrangeira tabela salesorderdetail'
+            tests:
+              - not_null
+      - name: stg_erp__salesorderheader #tabela cabecalho dos pedidos   # nome original da tabela no banco: sales_salesorderheader
+        description: "Dados tabela salesorderheader"
+        columns:
+          - name: pk_pedido
+            description: 'chave primaria tabela salesorderheader'
+            tests:
+              - unique
+              - not_null
+          - name: fk_cliente
+            description: 'chave estrangeira tabela salesorderheader'
+            tests:
+              - not_null
+          - name: fk_vendedor
+            description: 'chave estrangeira tabela salesorderheader'
+            #Nenhum teste aqui pois salespersonid (fk_vendedor) pode ser NULL na tabela sales_salesorderheader, pois toda compra que salespersonid (fk_vendedor) é NULL foi feita online, o onlineorderflag (sinalizador_pedido_online) em todas elas é TRUE
+          - name: fk_territorio
+            description: 'chave estrangeira tabela salesorderheader'
+            tests:
+              - not_null
+          - name: fk_endereco_entrega
+            description: 'chave estrangeira tabela salesorderheader'
+            tests:
+              - not_null
+          - name: fk_metodo_envio
+            description: 'chave estrangeira tabela salesorderheader'
+            tests:
+              - not_null
+          - name: fk_cartao_credito
+            description: 'chave estrangeira tabela salesorderheader'
+            # Nenhum teste aqui, creditcardid (fk_cartao_credito) por ser NULL na tabela sales_salesorderheader. Todas as linhas com creditcardid (fk_cartao_credito) NULL possuem status = 5 (enviado), o que indica que a compra foi efetivada por outro método de pagamento não especificado pelo banco de dados.
+      - name: stg_erp__salesorderheadersalesreason #tabela cabecalho dos pedidos e motivos das vendas   # nome original da tabela no banco: sales_salesorderheadersalesreason
+        description: "Dados tabela salesorderheadersalesreason"
+        columns:
+          - name: fk_pedido
+            description: 'chave estrangeira tabela salesorderheadersalesreason'
+            tests:
+              - not_null
+          - name: fk_motivo_venda
+            description: 'chave estrangeira tabela salesorderheadersalesreason'
+            tests:
+              - not_null
+      - name: stg_erp__salesperson #tabela vededores   # nome original da tabela no banco: sales_salesperson
+        description: "Dados tabela salesperson"
+        columns:
+          - name: pk_vendedor
+            description: 'chave primaria tabela salesperson'
+            tests:
+              - unique
+              - not_null
+          - name: fk_territorio  
+            description: 'chave estrangeira tabela salesperson' 
+            tests:
+              - not_null:
+                  severity: warn #Pode ser NULL para vendedores sem território atribuído (businessentityid com territoryid NULL: 274, 285, 287)
+      - name: stg_erp__salesreason #tabela motivo das vendas   # nome original da tabela no banco: sales_salesreason
+        description: "Dados tabela salesreason"
+        columns:
+          - name: pk_motivo_venda
+            description: 'chave primaria tabela salesreason'
+            tests:
+              - unique
+              - not_null
+      - name: stg_erp__salesterritory #tabela vendas por territorio   # nome original da tabela no banco: sales_salesterritory
+        description: "Dados tabela salesterritory"
+        columns:
+          - name: pk_territorio
+            description: 'chave primaria tabela salesterritory'
+            tests:
+              - unique
+              - not_null
+          - name: fk_pais
+            description: 'chave estrangeira tabela salesterritory'
+            tests:
+              - not_null
+      - name: stg_erp__stateprovince #tabela estados   # nome original no banco: person_stateprovince
+        description: "Dados tabela stateprovince"
+        columns:
+          - name: pk_estado
+            description: 'chave primaria tabela stateprovince'
+            tests:
+              - unique
+              - not_null
+          - name: fk_pais
+            description: 'chave estrangeira tabela stateprovince'
+            tests:
+              - not_null
+          - name: fk_territorio
+            description: 'chave estrangeira tabela stateprovince'
+            tests:
+              - not_null
+      - name: stg_erp__store #tabela lojas   # nome original da tabela no banco: sales_store
+        description: "Dados tabela store"
+        columns:
+          - name: pk_loja
+            description: 'chave primaria tabela store'
+            tests:
+              - unique
+              - not_null
+          - name: fk_vendedor
+            description: 'chave estrangeira tabela store'
+            tests:
+              - not_null
