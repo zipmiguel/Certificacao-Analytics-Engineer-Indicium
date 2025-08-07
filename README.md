@@ -1,4 +1,4 @@
-# 🧠 Projeto de Analytics – Adventure Works
+# 🚀 Projeto Adventure Works - Certificação em Engenharia de Analytics by Indicium
 
 ## 🎯 Objetivo
 Desenvolver uma solução de analytics para a Adventure Works, iniciando pela área de vendas, com foco em modelagem dimensional, transformação e validação dos dados brutos. O objetivo é garantir qualidade dos dados e gerar insights estratégicos por meio de dashboards interativos.
