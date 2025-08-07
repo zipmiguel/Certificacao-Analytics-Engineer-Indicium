@@ -30,6 +30,7 @@ Desenvolvimento de um dashboard interativo com análise de KPIs, clientes, local
 
 📌 Modelo Conceitual (Diagrama)
 Representa a modelagem dimensional com tabelas fato e dimensão, mapeando as tabelas de origem e respondendo a perguntas de negócio.
+
 🔗 [Visualizar Diagrama](https://drive.google.com/file/d/1j32PX43NWC7F_HcWlK5Bo4JowJDS6MRR/view?usp=sharing)
 
 📈 Dashboard Power BI
