@@ -27,9 +27,10 @@ Visualização com Power BI
 Desenvolvimento de um dashboard interativo com análise de KPIs, clientes, localidades e produtos.
 
 📊 Entregáveis
+
 📌 Modelo Conceitual (Diagrama)
 Representa a modelagem dimensional com tabelas fato e dimensão, mapeando as tabelas de origem e respondendo a perguntas de negócio.
-🔗 Visualizar Diagrama
+🔗 [Visualizar Diagrama](https://drive.google.com/file/d/1j32PX43NWC7F_HcWlK5Bo4JowJDS6MRR/view?usp=sharing)
 
 📈 Dashboard Power BI
 Com três abas, todas com filtros por ano, mês, produto, motivo de venda, localização, cliente, tipo de cartão e status:
@@ -56,11 +57,11 @@ KPIs: faturamento bruto, produtos vendidos, produto líder em faturamento e tick
 
 Gráficos com produtos mais vendidos, maiores faturamentos ao longo do tempo e ticket médio por produto
 
-🔗 Acessar Dashboard
+🔗 [Acessar Dashboard](https://app.powerbi.com/view?r=eyJrIjoiNDE4ZTNjOTgtNjFmMy00ZTBkLTgxYjItNmU5MGVlMTFjYjRhIiwidCI6ImZhNzk1MzFjLThjZTUtNGJkMy05N2VlLTI0NWU2ZWUyNjZiOCJ9)
 
 🎥 Vídeo Explicativo
 Apresentação completa do projeto: data warehouse na nuvem com Snowflake, modelagem e transformação com dbt, e visualização com Power BI.
-🔗 Assistir no YouTube
+🔗 [Assistir no YouTube](https://www.youtube.com/watch?v=SYeKGkhWh3k)
 
 ⚙️ Ferramentas Utilizadas
 
@@ -90,4 +91,4 @@ Desenvolvimento de dashboards interativos
 
 👨‍💻 Autor
 Miguel Philippi NobreProject Analyst | SQL | Data Analysis | dbt | Snowflake | Power BI
-🔗 LinkedIn
+🔗 [LinkedIn](https://www.linkedin.com/in/miguel-philippi/)
