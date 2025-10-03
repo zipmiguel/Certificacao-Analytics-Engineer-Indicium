@@ -34,7 +34,7 @@ Com três abas, todas com filtros por ano, mês, produto, motivo de venda, local
 #### Visão Geral
 - KPIs: faturamento bruto, produtos vendidos, pedidos efetivados e ticket médio por pedido
 - Gráfico de linha com evolução temporal de faturamento, pedidos efetivados e produtos vendidos
-- Tabela resumo de vendas por produto e por cliente, com informações de produtos vendidos, pedido efetivados e faturamento bruoto
+- Tabela resumo de vendas por produto e por cliente, com informações de produtos vendidos, pedido efetivados e faturamento bruto
 
 #### Clientes e Localidades
 - KPIs: faturamento bruto, número de cidades com vendas, cidade líder em vendas e ticket médio por cliente
